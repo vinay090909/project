@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Services</title>
+    <script src="/script.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            background-color: #0056b3;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .service-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h3 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .service-card p {
+            font-size: 0.95em;
+            color: #555;
+            margin-top: 0;
+        }
+
+        .service-img-container {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+            background-color: #e3f2fd;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-img {
+            transform: scale(1.1);
+            background-color: #bbdefb;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .service-card {
+                width: 280px;
+                padding: 20px;
+            }
+            
+            .service-img-container {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .service-card {
+                width: 100%;
+                max-width: 320px;
+            }
+            
+            .service-img-container {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>University Services</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="developer.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Our Services</h2>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-img-container">
+                    <picture>
+                        <source srcset="images/admission.webp" type="image/webp">
+                        <img src="images/admission.png" alt="Admission Assistance" class="service-img">
+                    </picture>
+                </div>
+                <h3>Admission Assistance</h3>
+                <p>We provide comprehensive support for admissions, including application guidance, document verification, and counseling.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-img-container">
+                    <picture>
+                        <source srcset="graduation.jpg" type="image/webp">
+                        <img src="graduation.jpg" alt="Scholarship Programs" class="service-img">
+                    </picture>
+                </div>
+                <h3>Scholarship Programs</h3>
+                <p>Explore various scholarship opportunities for deserving students to help them achieve their academic goals.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-img-container">
+                    <picture>
+                        <source srcset="images/counseling.webp" type="image/webp">
+                        <img src="images/counseling.png" alt="Career Counseling" class="service-img">
+                    </picture>
+                </div>
+                <h3>Career Counseling</h3>
+                <p>Our career counselors help students choose the right career path and provide guidance for future opportunities.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-img-container">
+                    <picture>
+                        <source srcset="images/library.webp" type="image/webp">
+                        <img src="images/library.png" alt="Library Access" class="service-img">
+                    </picture>
+                </div>
+                <h3>Library Access</h3>
+                <p>Access to a vast collection of books, journals, and digital resources to support your academic journey.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-img-container">
+                    <picture>
+                        <source srcset="images/hostel.webp" type="image/webp">
+                        <img src="images/hostel.png" alt="Hostel Facilities" class="service-img">
+                    </picture>
+                </div>
+                <h3>Hostel Facilities</h3>
+                <p>Safe and comfortable hostel accommodations for students with modern amenities and a supportive environment.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-img-container">
+                    <picture>
+                        <source srcset="images/sports.webp" type="image/webp">
+                        <img src="images/sports.png" alt="Sports and Recreation" class="service-img">
+                    </picture>
+                </div>
+                <h3>Sports and Recreation</h3>
+                <p>State-of-the-art sports facilities and recreational activities to promote a healthy and balanced lifestyle.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 University Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>

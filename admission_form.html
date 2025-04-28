@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Admission Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --gradient-start: #6a11cb;
+            --gradient-end: #2575fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #7f8c8d;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Admission Form Section */
+        .admission {
+            padding: 4rem 0;
+            background-color: #f9f9f9;
+        }
+
+        .admission-form-container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .admission-form-container h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .admission-form-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--success-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            grid-column: span 2;
+            justify-self: center;
+            width: 200px;
+        }
+
+        .submit-btn:hover {
+            background-color: #219653;
+            transform: translateY(-2px);
+        }
+
+        .form-note {
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            grid-column: span 2;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-section p {
+            margin-bottom: 1rem;
+            color: #bdc3c7;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                margin: 1rem 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .submit-btn {
+                grid-column: span 1;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo"><i class="fas fa-university"></i>University</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="developer.html">About</a></li>
+                    <li><a href="admission_form.html">Admission</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to Our University</h1>
+            <p>Join our community of learners and innovators. Discover world-class education and endless opportunities for growth and success.</p>
+            <a href="#admission" class="btn btn-primary" style="background-color: white; color: var(--gradient-start);">Apply Now</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Our University</h2>
+                    <p>Founded in 1990, our university has grown to become a leading institution of higher education with a reputation for academic excellence and innovation. We offer a wide range of undergraduate and graduate programs across various disciplines.</p>
+                    <p>Our campus features state-of-the-art facilities, including modern classrooms, research labs, libraries, and recreational spaces. We pride ourselves on our diverse community of students and faculty from around the world.</p>
+                    <p>With a student-centered approach to education, we focus on developing critical thinking, creativity, and practical skills that prepare our graduates for successful careers and meaningful contributions to society.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="University Campus">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Form Section -->
+    <section id="admission" class="admission">
+        <div class="container">
+            <div class="admission-form-container">
+                <h2>University Admission Form</h2>
+                <form id="admissionForm" class="form-grid">
+                    <div class="form-group">
+                        <label for="full_name">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="father_name">Father's Name</label>
+                        <input type="text" id="father_name" name="father_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mother_name">Mother's Name</label>
+                        <input type="text" id="mother_name" name="mother_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Course</label>
+                        <select id="course" name="course" required>
+                            <option value="">Select Course</option>
+                            <option value="B.Tech">B.Tech</option>
+                            <option value="M.Tech">M.Tech</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MBA">MBA</option>
+                            <option value="BBA">BBA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">Pincode</label>
+                        <input type="text" id="pincode" name="pincode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="marks_10">10th Grade Marks (%)</label>
+                        <input type="number" id="marks_10" name="marks_10" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="marks_12">12th Grade Marks (%)</label>
+                        <input type="number" id="marks_12" name="marks_12" min="0" max="100" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                    <p class="form-note">All fields are required. Please ensure all information is accurate before submission.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About University</h3>
+                    <p>Our university is committed to excellence in teaching, research, and community engagement. We prepare students to become leaders in their fields.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="developer.html">About</a></li>
+                        <li><a href="admission_form.html">Admission</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 University Avenue, City</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> admissions@university.edu</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("admissionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Form validation
+            const form = event.target;
+            let isValid = true;
+            
+            // Check all required fields
+            form.querySelectorAll('[required]').forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'var(--accent-color)';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+            
+            // Check marks are within valid range
+            const marks10 = parseInt(document.getElementById('marks_10').value);
+            const marks12 = parseInt(document.getElementById('marks_12').value);
+            
+            if (marks10 < 0 || marks10 > 100) {
+                document.getElementById('marks_10').style.borderColor = 'var(--accent-color)';
+                isValid = false;
+            }
+            
+            if (marks12 < 0 || marks12 > 100) {
+                document.getElementById('marks_12').style.borderColor = 'var(--accent-color)';
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                alert('Please fill in all required fields correctly.');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('Your application has been submitted successfully! We will contact you soon.');
+            form.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form Submitted</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            max-width: 600px;
+            width: 100%;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #28a745;
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        .details p {
+            margin: 5px 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .print-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .print-btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        .home-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        .home-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admission Form Submitted Successfully</h1>
+        <p>Your application has been submitted. We will review your form and inform you via email about the next steps.</p>
+        <h2>Submitted Details:</h2>
+        <div class="details" id="formDetails"></div>
+        <div class="buttons">
+            <button class="print-btn" onclick="window.print()">Print Admission Form</button>
+            <button class="home-btn" onclick="window.location.href='index.html'">Go Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            let detailsHTML = "";
+            params.forEach((value, key) => {
+                detailsHTML += `<p><strong>${key.replace('_', ' ')}:</strong> ${decodeURIComponent(value)}</p>`;
+            });
+            document.getElementById('formDetails').innerHTML = detailsHTML;
+        }
+        window.onload = getQueryParams;
+    </script>
+</body>
+</html>

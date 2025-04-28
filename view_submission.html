@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>University Admission Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        /* Submission Details Section */
+        .submission-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .submission-container h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .submission-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .details-card {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .details-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .detail-item {
+            margin-bottom: 1rem;
+        }
+
+        .detail-item strong {
+            color: var(--dark-color);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-item span {
+            color: #555;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-section p {
+            margin-bottom: 1rem;
+            color: #bdc3c7;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                margin: 1rem 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 0;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo"><i class="fas fa-university"></i>University</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="submission-container">
+                <h2>Admission Application Details</h2>
+                <div class="details-grid" id="submission-details">
+                    <!-- Details will be inserted here by JavaScript -->
+                </div>
+                <div class="action-buttons">
+                    <a href="Dashboard.html" class="btn btn-primary">Back to Dashboard</a>
+                    <a href="#" class="btn btn-secondary">Print Application</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About University</h3>
+                    <p>Our university is committed to excellence in teaching, research, and community engagement. We prepare students to become leaders in their fields.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 University Ave, City</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@university.edu</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mock data (simulating stored submission details)
+        const submission = {
+            full_name: "John Doe",
+            father_name: "Robert Doe",
+            mother_name: "Mary Doe",
+            dob: "January 1, 2000",
+            email: "john.doe@example.com",
+            phone: "(987) 654-3210",
+            course: "Bachelor of Computer Science",
+            gender: "Male",
+            address: "123 Main Street, Apt 4B",
+            city: "Los Angeles",
+            state: "California",
+            country: "United States",
+            pincode: "90001",
+            marks_10: "85% (CBSE Board)",
+            marks_12: "90% (CBSE Board)",
+            application_date: "June 15, 2023",
+            application_status: "Under Review",
+            application_id: "UNI20230058"
+        };
+
+        function displaySubmissionDetails() {
+            const detailsHTML = `
+                <div class="details-card">
+                    <h3>Personal Information</h3>
+                    <div class="detail-item">
+                        <strong>Full Name</strong>
+                        <span>${submission.full_name}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Father's Name</strong>
+                        <span>${submission.father_name}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Mother's Name</strong>
+                        <span>${submission.mother_name}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Date of Birth</strong>
+                        <span>${submission.dob}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Gender</strong>
+                        <span>${submission.gender}</span>
+                    </div>
+                </div>
+                
+                <div class="details-card">
+                    <h3>Contact Information</h3>
+                    <div class="detail-item">
+                        <strong>Email Address</strong>
+                        <span>${submission.email}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Phone Number</strong>
+                        <span>${submission.phone}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Address</strong>
+                        <span>${submission.address}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>City/State/Zip</strong>
+                        <span>${submission.city}, ${submission.state} ${submission.pincode}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Country</strong>
+                        <span>${submission.country}</span>
+                    </div>
+                </div>
+                
+                <div class="details-card">
+                    <h3>Academic Information</h3>
+                    <div class="detail-item">
+                        <strong>Course Applied</strong>
+                        <span>${submission.course}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>10th Grade Marks</strong>
+                        <span>${submission.marks_10}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>12th Grade Marks</strong>
+                        <span>${submission.marks_12}</span>
+                    </div>
+                </div>
+                
+                <div class="details-card">
+                    <h3>Application Details</h3>
+                    <div class="detail-item">
+                        <strong>Application ID</strong>
+                        <span>${submission.application_id}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Application Date</strong>
+                        <span>${submission.application_date}</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Current Status</strong>
+                        <span class="status-badge">${submission.application_status}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById("submission-details").innerHTML = detailsHTML;
+        }
+
+        // Call function to display details when page loads
+        document.addEventListener('DOMContentLoaded', displaySubmissionDetails);
+
+        // Add print functionality
+        document.querySelector('.btn-secondary').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.print();
+        });
+    </script>
+</body>
+</html>

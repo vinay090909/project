@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offline | University Portal</title>
+    <script src="/script.js"></script>
+    <style>
+        body { 
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: #f5f7fa;
+        }
+        h1 { color: #3498db; margin-bottom: 20px; }
+        p { color: #7f8c8d; margin-bottom: 30px; }
+        .retry-btn {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Offline Mode</h1>
+    <p>You're currently offline. Some features might not be available.</p>
+    <p>Please check your internet connection and try again.</p>
+    <button class="retry-btn" onclick="window.location.reload()">Retry Connection</button>
+</body>
+</html>

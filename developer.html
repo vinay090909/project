@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Developer Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .cta-buttons .btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-buttons .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .header-content {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+        
+        .header-content p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Main Content */
+        .about {
+            flex: 1;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+        
+        .developer-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .developer-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            width: 320px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+        
+        .developer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+        
+        .developer-image-container {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .developer-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .developer-card:hover .developer-image {
+            transform: scale(1.05);
+        }
+        
+        .developer-details {
+            padding: 1.5rem;
+        }
+        
+        .developer-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: var(--dark-color);
+        }
+        
+        .developer-role {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin: 0.5rem 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: var(--primary-color);
+            background: rgba(67, 97, 238, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                margin: 1rem 0;
+            }
+            
+            .cta-buttons {
+                margin-top: 1rem;
+            }
+            
+            .developer-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo"><i class="fas fa-graduation-cap"></i>University</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="developer.html">About us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cta-buttons">
+                <button class="btn login-btn" onclick="redirectTo('login.html')">Login</button>
+                <button class="btn register-btn" onclick="redirectTo('register.html')">Register</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-content">
+        <h1>Meet Our Team</h1>
+        <p>The talented developers behind the University Admission Management System</p>
+    </div>
+
+    <section class="about">
+        <h2>Development Team</h2>
+        <div class="developer-cards">
+            <div class="developer-card">
+                <div class="developer-image-container">
+                    <img src="s.jpg" alt="Sanghamitra Thakur" class="developer-image">
+                </div>
+                <div class="developer-details">
+                    <h3 class="developer-name">Sanghamitra Thakur</h3>
+                    <p class="developer-role">MCA Student & Software Developer</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="developer-card">
+                <div class="developer-image-container">
+                    <img src="p.jpg" alt="Vinay Andotra" class="developer-image">
+                </div>
+                <div class="developer-details">
+                    <h3 class="developer-name">Vinay Andotra</h3>
+                    <p class="developer-role">MCA Student & Software Developer</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <p class="copyright">&copy; 2025 Vinay Andotra & Sanghamitra Thakur. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>
